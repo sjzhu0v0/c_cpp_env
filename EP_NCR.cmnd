@@ -1,0 +1,247 @@
+#tune for EIC
+#------------------------------------------------------------------------------
+Main:numberOfEvents = 1000000     ! number of events to generate
+# Main:numberOfEvents = 5000     ! number of events to generate
+Main:timesAllowErrors = 30000000    ! abort run after this many flawed events
+Init:showChangedSettings = on  ! print changed flags/modes/parameters
+Init:showAllSettings = off        ! print all flags/modes/parameters
+# Next:numberShowInfo = 10  !The number of events to list the Info information for, where relevant
+
+#------------------------------------------------------------------------------
+# Colliding beams and center-of-mass energy
+# Documentation: <pyhiadir>/htmldoc/BeamParameters.html
+#------------------------------------------------------------------------------
+# Beams:idA = 2212                  ! proton
+# Beams:idB = 2212                  ! proton
+# # Beams:eCM = 500.                  ! RHIC nominal (GeV)
+# Beams:eCM = 200.                  ! RHIC nominal (GeV)
+Beams:idA = 2212                 ! proton
+Beams:idB = 11                   ! electron
+Beams:eA = 25.                  !  (GeV)
+Beams:eB = 5.                   !  (GeV)
+Beams:frameType=2
+Tune:preferLHAPDF = 2
+Tune:pp=14 #default one
+# PDF:pSet=LHAPDF6:EPPS16nlo_CT14nlo_Au197
+PDF:pSet=LHAPDF6:CT14nlo
+# # PDF:useHard=on
+# # PDF:pHardSet=LHAPDF6:EPPS16nlo_CT14nlo_Au197
+# # PDF:useHardNPDFA=on
+# # PDF:nPDFSetA=3
+# # PDF:nPDFBeamA=100791970
+#
+# MultipartonInteractions:pT0Ref=3
+PDF:lepton=off
+PhaseSpace:mHatMin=0.
+PhaseSpace:pTHatMinDiverge=0.5
+SpaceShower:dipoleRecoil=on
+SpaceShower:pTmaxMatch=2
+TimeShower:QEDshowerByL = off
+
+PhotonCollision:all=on
+PhotonParton:all=on
+PromptPhoton:all=on
+WeakBosonExchange:all=on
+WeakSingleBoson:all=on
+WeakDoubleBoson:all=on
+MultiPartonInteractions:pT0Ref=3
+#should not open the following
+#HardQCD:all=on
+## # SoftQCD:elastic=on
+# SoftQCD:nonDiffractive=on
+## # Diffraction
+## Diffraction:doHard=on
+#Charmonium:all=on
+#Bottomonium:all=on
+## PhaseSpace:pTHatMin = 1
+## PhaseSpace:pTHatMax = 2
+# Tune:preferLHAPDF = 1
+# MultiPartonInteractions:pT0Ref=2.15
+# BeamRemnants:remnantMode=1
+# BeamRemnants:saturation=5
+# ColourReconnection:mode = 1
+# ColourReconnection:reconnect=on
+# ColourReconnection:allowDoubleJunRem = off
+# ColourReconnection:m0 = 0.3
+# ColourReconnection:allowJunctions=on
+# ColourReconnection:junctionCorrection = 1.2
+# ColourReconnection:timeDilationMode = 2
+# ColourReconnection:timeDilationPar=0.18
+#
+# StringPT:sigma=0.335
+# StringZ:aLund=0.36
+# StringZ:bLund=0.56
+# StringFlav:probQQtoQ=0.078
+# StringFlav:ProbStoUD=0.2
+# StringFlav:probQQ1toQQ0join=0.0275,0.0275,0.0275,0.0275
+
+#------------------------------------------------------------------------------
+# Process Selection
+# Make you selection by uncommenting the referring switches
+# 
+# Warning: the b and c producing processes do not catch all possible 
+# production modes. You would need to use HardQCD:all or even SoftQCD:minBias
+# for that. But the hard ones are the dominating ones and they are in.
+# Note that for pt -> 0 things might go very wrong. A lower pTHat cut avoids
+# this especially for charm and bottom production.
+# Documentation: <pyhiadir>/htmldoc/QCDProcesses.html
+# Documentation: <pyhiadir>/htmldoc/OniaProcesses.html
+#------------------------------------------------------------------------------
+# Uncomment for charmonium
+# Charmonium:all = on   ! charmonium production
+
+# Uncomment for charmonium singlet only
+# Charmonium:gg2QQbar[3S1(1)]g = on
+# Charmonium:gg2QQbar[3P0(1)]g = on
+# Charmonium:gg2QQbar[3P1(1)]g = on
+# Charmonium:gg2QQbar[3P2(1)]g = on
+# Charmonium:qg2QQbar[3P0(1)]q = on
+# Charmonium:qg2QQbar[3P1(1)]q = on
+# Charmonium:qg2QQbar[3P2(1)]q = on
+# Charmonium:qqbar2QQbar[3P0(1)]g = on
+# Charmonium:qqbar2QQbar[3P1(1)]g = on
+# Charmonium:qqbar2QQbar[3P2(1)]g = on
+
+# Uncomment for charmonium octett only
+# Charmonium:gg2QQbar[3S1(8)]g = on
+# Charmonium:gg2QQbar[1S0(8)]g = on
+# Charmonium:gg2QQbar[3PJ(8)]g = on
+# Charmonium:qg2QQbar[3S1(8)]q = on
+# Charmonium:qg2QQbar[1S0(8)]q = on
+# Charmonium:qg2QQbar[3PJ(8)]q = on
+# Charmonium:qqbar2QQbar[3S1(8)]g = on
+# Charmonium:qqbar2QQbar[1S0(8)]g = on
+# Charmonium:qqbar2QQbar[3PJ(8)]g = on
+
+# Uncomment for bottomonium
+# Bottomonium:all = on  ! bottomonium production
+
+# Uncomment next 2 lines for charm
+# HardQCD:gg2ccbar = on    ! g g -> c cbar
+# HardQCD:qqbar2ccbar = on ! q qbar -> c cbar
+
+# Uncomment next 2 lines for bottom
+# HardQCD:gg2bbbar = on    ! g g -> b bbar
+# HardQCD:qqbar2bbbar = on ! q qbar -> b bbar
+
+# Uncomment for Drell-Yan
+# WeakSingleBoson:ffbar2gmZ = on
+
+# Hard processes main switch 
+# HardQCD:all = on
+
+# Minimum bias 
+# SoftQCD:all = on
+# SoftQCD:nonDiffractive = on  !so called minbias process
+# SoftQCD:inelastic= on  !so called minbias process
+#------------------------------------------------------------------------------
+# K factor
+# Multiply almost all cross sections by this common fix factor.
+# This is usually no very useful. The data can be shifted up and down
+# later anyhow as we please. 
+# Documentation: <pyhiadir>/htmldoc/CouplingsAndScales.html
+#------------------------------------------------------------------------------
+# SigmaProcess:Kfactor = 3
+
+#------------------------------------------------------------------------------
+# Scales (Ramona's suggestions)
+# This sets the scale to settings typically for hard probes:
+# mu_F = mu_R = 2*mT
+# Documentation: <pyhiadir>/htmldoc/CouplingsAndScales.html
+#------------------------------------------------------------------------------
+# SigmaProcess:renormScale2 = 3
+# SigmaProcess:factorScale2 = 3
+# SigmaProcess:renormMultFac = 2   ! 2mT
+# SigmaProcess:factorMultFac = 2   ! 2mT
+
+#------------------------------------------------------------------------------
+# To limit particle production to a certain pthat range uncomment
+# these lines. Use only when you 100% know what you are doing.
+# It is extremely useful to split runs up in ptHat bins to generate
+# statistics evenly in pt. Book keeping is important then (cross-sections,
+# number of events) to compile the final complete spectra.
+# Documentation: <pyhiadir>/htmldoc/PhaseSpaceCuts.html
+#------------------------------------------------------------------------------
+#PhaseSpace:pTHatMin = 10
+# PhaseSpace:pTHatMax = 2
+
+#------------------------------------------------------------------------------
+# Random Number
+# Initialize random generator according to time. Otherwise multiple jobs
+# will produce the same sequence (unless you pass a different seed every
+# time which is not practical).
+# Documentation: <pythiadir>/htmldoc/RandomNumberSeed.html
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# PDF Selection:
+# Note: you need LHAPDF to be installed. Pythia 8 only provides a 
+# minimal set to get started. !pythia8.2 donot need to do so
+# The choice of PDF here is greatly motivated by:
+# A.~Sherstnev and R.~S.~Thorne, arXiv:0807.2132 and arXiv:0711.2473v3
+# and W. Vogelsang (private communication)
+# These are PDFs especially made for LO Monte-Carlo generators such
+# as PYTHIA.
+# The state-of-the-art NLO PDF is cteq66.LHgrid which can be used
+# as an alternative (also from LHAPDF) but with the known problems
+# that arise when using a NLO PDF in an LO simulator.
+# Documentation: <pyhiadir>/htmldoc/PDFSelection.html
+#------------------------------------------------------------------------------
+#pythia8.2 have different expression rules with pythia8.1 here.
+# PDF:useLHAPDF = on         !pythia8.1 only
+#LHAPDFset = MRSTMCal.LHgrid !pythia8.1 only
+# PDF:extrapolate = on
+
+#------------------------------------------------------------------------------
+# Settings for the event generation process in the Pythia8 library
+# Effect/Relevance of MI, ISR and FSR need to be checked. For sure
+# the use more CPU and hence less events/s.
+# If HadronLevel:Hadronize = off we end up with the pure c, b spectra
+# (which might be useful at times)
+# Documentation: <pyhiadir>/htmldoc/MasterSwitches.html
+# Documentation: <pyhiadir>/htmldoc/MultipleInteractions.html
+#---------------------------------------------------------------------------
+# PartonLevel:all = on
+# PartonLevel:MPI = on              ! multiple interactions
+# PartonLevel:ISR = on             ! initial-state radiation 
+# BeamRemnants:primordialKT = on    ! primordial kt
+# PartonLevel:earlyResDec = on
+# PartonLevel:FSR = on             ! final-state radiation
+# #HadronLevel:Hadronize = off     ! no hadronization use
+
+#------------------------------------------------------------------------------
+# Relative production ratio vector/pseudoscalar for charm and bottom mesons
+# This was originally PARJ(13) where PARJ(13) = V/(PS+V) that is the 
+# vector meson  fraction of primary charm+bottom mesons. 
+# Andre David (CERN/NA60) made an exhaustive study and found that the
+# world data supports 0.6 while PYTHIA default was PARJ(13) = 3/4 = 0.75
+# from simple spin counting.
+# In PYTHIA8 we now use V/PS not V/(PS+V)
+# Documentation: <pyhiadir>/htmldoc/FlavourSelection.html
+#------------------------------------------------------------------------------
+# StringFlav:mesonCvector = 1.5    ! same as PARJ(13)=0.6   -> 1.5
+# StringFlav:mesonBvector = 3      ! leave at PARJ(13)=0.75 -> 3
+
+#------------------------------------------------------------------------------
+# Heavy quark masses.
+# Note that this should match with the ones used in the PDF.
+# The masses are listed in the header of the refering PDF file.
+# Documentation: <pyhiadir>/htmldoc/ParticleDataScheme.html
+# Documentation: <pyhiadir>/htmldoc/ParticleData.html
+#------------------------------------------------------------------------------
+# 4:m0 = 1.43
+# 5:m0 = 4.30
+
+#------------------------------------------------------------------------------
+# Particle Decay limits
+# When on, only particles with a decay within a volume limited by 
+# rho = sqrt(x^2 + y^2) < xyMax and |z| < zMax are decayed. 
+# The above xyMax, expressed in mm/c.
+#------------------------------------------------------------------------------
+# ParticleDecays:limitCylinder = on
+# ParticleDecays:xyMax = 600
+# ParticleDecays:zMax = 1000
+
+# EOF
+Random:setSeed = on
+
